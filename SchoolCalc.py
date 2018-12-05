@@ -1,16 +1,82 @@
 import csv, os
 
-outputFile = open('schoollistoutput.csv', 'w', newline = '')
-outputWrite = csv.writer(outputFile)
+schoolFile = open('schoollistoutput.csv', 'w', newline = '')
+schoolWrite = csv.writer(outputFile)
 
 schoolList = []
+maybeList = []
+
+for judgeRecord in os.listdir('.'):
+  if not judgeRecord.endswith('.csv'):
+    print('Skipping...' + judgeRecord)
+    continue
+  elif (judgeRecord == 'schoollistoutput.csv') or (judgeRecord = 'maybelistoutput.csv'):
+    continue
+  else:
+    for row in judgeRecord:
+      if row[1] == 'Date':
+        continue
+      else:
+        entry1 = row[4]
+        entry2 = row[5]
+        school1 = entry1[:-3]
+        if school1.isdigit():
+          continue
+        elif school1.isalpha():
+          if school1 in schoolList:
+            continue
+          else:
+            try: 
+              schoolList.append(school1)
+            except:
+              print("Can't add "  + school1 + ' to the list.')
+              continue
+        else: 
+          if school1 in maybeList:
+            continue
+          else:
+            try:
+              maybeList.append(school1)
+            except:
+              print("Can't add " + school1 + ' to error list.')
+              continue
+        school2 = entry2[:-3]
+        if school2.isdigit():
+          continue
+        elif school2.isalpha():
+          if school2 in schoolList:
+            continue
+          else:
+            try:
+              schoolList.append(school2)
+            except: 
+              print("Can't add " + school2 + ' to the list.')
+
+        else:
+          if school2 in maybeList:
+            continue
+          else:
+            try:
+              maybeList.append(school2)
+            except:
+              print("Can't add " + school2 + ' to the Error List.')
 
 
-#open CSV
+#sort the list
 
-#for loop every row
+#for loop through the lists, and put that shit into rows. 
 
-# remove last three char from every school
+schoolList.sort()
+maybeList.sort()
 
-# check to see if that string is in a list, if not append. Else ignore.
+schoolFile = open('schoollistoutput.csv', 'w', newline = '')
+schoolWrite = csv.writer(outputFile)
 
+for entry in schoolList:
+  schoolWrite.writerow(entry)
+
+maybeFile = open('maybelistoutput.csv', 'w', newline = '')
+maybeWrite = csv.writer(maybeFile)
+
+for entry in maybeList:
+  maybeWrite.writerow(entry)
