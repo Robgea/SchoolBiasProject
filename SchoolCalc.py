@@ -1,7 +1,5 @@
 import csv, os
 
-schoolFile = open('schoollistoutput.csv', 'w', newline = '')
-schoolWrite = csv.writer(outputFile)
 
 schoolList = []
 maybeList = []
@@ -10,10 +8,12 @@ for judgeRecord in os.listdir('.'):
   if not judgeRecord.endswith('.csv'):
     print('Skipping...' + judgeRecord)
     continue
-  elif (judgeRecord == 'schoollistoutput.csv') or (judgeRecord = 'maybelistoutput.csv'):
+  elif (judgeRecord == 'schoollistoutput.csv') or (judgeRecord == 'maybelistoutput.csv'):
     continue
   else:
-    for row in judgeRecord:
+    csvObj = open(judgeRecord)
+    recordReader = csv.reader(csvObj)
+    for row in recordReader:
       if row[1] == 'Date':
         continue
       else:
@@ -70,13 +70,9 @@ schoolList.sort()
 maybeList.sort()
 
 schoolFile = open('schoollistoutput.csv', 'w', newline = '')
-schoolWrite = csv.writer(outputFile)
-
-for entry in schoolList:
-  schoolWrite.writerow(entry)
+schoolWrite = csv.writer(schoolFile)
+schoolWrite.writerow(schoolList)
 
 maybeFile = open('maybelistoutput.csv', 'w', newline = '')
 maybeWrite = csv.writer(maybeFile)
-
-for entry in maybeList:
-  maybeWrite.writerow(entry)
+maybeWrite.writerow(maybeList)
