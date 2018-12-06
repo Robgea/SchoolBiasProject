@@ -1,16 +1,20 @@
 import csv, os
 
 
-schoolList = []
+listFile = open('schoolist.csv')
+listReader = csv.reader(listFile)
+schoolList = list(listReader)
+
+
 
 
 def addSchool(school):
   global schoolList
   if (school.isdigit()) or (len(school) <2):
-    continue
+    return
   else: 
     if school in schoolList:
-      continue
+      return
     else:
       try:
         schoolList.append(school)
@@ -24,7 +28,7 @@ for judgeRecord in os.listdir('.'):
   if not judgeRecord.endswith('.csv'):
     print('Skipping...' + judgeRecord)
     continue
-  elif (judgeRecord == 'schoollistoutput.csv') or (judgeRecord == 'maybelistoutput.csv'):
+  elif (judgeRecord == 'schoollistoutput.csv') or (judgeRecord == 'schoollist.csv'):
     continue
   else:
     csvObj = open(judgeRecord)
