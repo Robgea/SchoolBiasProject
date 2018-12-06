@@ -4,7 +4,7 @@ import csv, os
 schoolList = []
 
 
-def addSchool(school)
+def addSchool(school):
   global schoolList
   if (school.isdigit()) or (len(school) <2):
     continue
