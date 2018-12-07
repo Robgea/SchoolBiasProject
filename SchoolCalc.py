@@ -1,12 +1,6 @@
 import csv, os
 
-
-listFile = open('schoolist.csv')
-listReader = csv.reader(listFile)
-schoolList = list(listReader)
-
-
-
+schoolList = []
 
 def addSchool(school):
   global schoolList
@@ -20,8 +14,6 @@ def addSchool(school):
         schoolList.append(school)
       except:
         print("Can't add "  + school + ' to the list.')
-
-
 
 
 for judgeRecord in os.listdir('.'):
@@ -44,12 +36,6 @@ for judgeRecord in os.listdir('.'):
         addSchool(school1)
         addSchool(school2)
 
-
-
-
-#sort the list
-
-#for loop through the lists, and put that shit into rows. 
 
 schoolList.sort()
 
