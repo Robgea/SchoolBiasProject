@@ -62,7 +62,7 @@ def side_bias_calc(schools, count, ignore):
                   count['Aff Total'] += 1
                 except:
                   print('Something Fucky happened')
-            elif row[6].startswith('NEG')
+            elif row[6].startswith('NEG'):
                 try:
                   count[str(schools[aff_team] + ' Aff Total')] += 1
                   count['Aff Total'] += 1
