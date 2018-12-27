@@ -44,8 +44,8 @@ def side_bias_calc(schools, count, ignore):
 
 
       for row in recordlist:
-        row[4] = aff_team
-        row[5] = neg_team
+        aff_team = row[4]
+        neg_team = row[5]
         aff_team = aff_team[:-3]
         neg_team = neg_team[:-3]
         if row[2] == 'Event':
