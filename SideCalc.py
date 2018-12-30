@@ -36,8 +36,8 @@ def side_bias_calc(schools, count, ignore):
       recordEntry = judgeRecord[:-4]
       judgeoutput = [recordEntry,]
 
-      for value in count.values():
-        value = 0
+      for key in count:
+        count[key] = 0
 
 
       #go through each row, do two checks, one for Aff and one for Neg. Increase each one as appropros.
@@ -103,13 +103,6 @@ def side_bias_calc(schools, count, ignore):
 
 
 
-
-
-
-
-
-          
-#write two functions, Aff Check and Neg Check. 
 
 
 
